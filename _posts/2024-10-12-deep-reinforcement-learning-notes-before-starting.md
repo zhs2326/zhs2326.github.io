@@ -1,15 +1,14 @@
 ---
-title: 'Deep Reinforcement Learning Notes (Before Starting)'
-date: 2024-10-12
-permalink: /posts/2024/10/blog-post-1/
+title: 'Paper Reading: Learning without Forgetting'
+date: 2025-06-01
+permalink: /posts/2025/06/blog-post-1/
 tags:
-  - cool posts
-  - reinforcement learning
-  - deep learning
+  - continual learning
+excerpt: ""
 ---
 
-The world is changing rapidly, and AI is evolving even faster! To keep up with this wave, I will be documenting my journey of learning AI technology in a series of posts, summarizing my thoughts and insights along the way. This is intended to help others with similar backgrounds who are also learning AI and might benefit from my learning experience. I’ll be noting the time I spent and the resources I used throughout the process.
+<div class="notion-embed">
+  <iframe src="https://continual-learning.notion.site/ebd/2059004f66ee80bf8e31d9987bf03d45?embed=true" width="100%" height="1000" frameborder="0" allowfullscreen></iframe>
+</div>
 
-Here’s a bit about my background: I’m currently an Audio AI Engineer at a startup, also with some knowledge in the field of computer vision, and I hold a Master’s degree in Electrical Engineering from Caltech. The first area I’ve chosen to dive into is deep reinforcement learning.
 
-Alright, are you ready? Let’s ride the AI wave together! 
