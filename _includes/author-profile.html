@@ -151,16 +151,10 @@
         <li><a href="https://www.youtube.com/@{{ author.youtube }}"><i class="fab fa-fw fa-youtube icon-pad-right" aria-hidden="true"></i>YouTube</a></li>
       {% endif %}
       {% if author.zhihu %}
-      <li><a href="htps://www.zhihu.com/people/{{ author.zhihu }}"><i class="fab fa-fw fa-zhihu icon-pad-right" aria-hidden="true"></i>Zhihu</a></li>
+      <li><a href="https://www.zhihu.com/people/{{ author.zhihu }}" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+        <i class="fab fa-fw fa-zhihu" aria-hidden="true"></i> Zhihu
+      </a></li>
       {% endif %}
-      
-      <!-- Visitor Counter -->
-      <li>
-        <a href="https://zhs2326.goatcounter.com" target="_blank" rel="noopener">
-          <i class="fas fa-fw fa-chart-line icon-pad-right" aria-hidden="true"></i>
-          <span data-goatcounter="https://zhs2326.goatcounter.com/count" data-goatcounter-display="inline"></span> visitors
-        </a>
-      </li>
     </ul>
   </div>
 </div>
