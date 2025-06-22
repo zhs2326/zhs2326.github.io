@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Hi, I'm Haoshuai(Henry) Zhou!"
+title                    : "Hi, I'm Haoshuai Zhou!"
 title_separator          : "-"
 name                     : &name "Your Name"
 description              : &description "personal description"
@@ -22,7 +22,7 @@ repository               : "zhs2326/zhs2326.github.io"
 author:
   # Biographic information
   avatar           : "haoshuai_profile.jpeg"
-  name             : "Haoshuai (Henry) Zhou"
+  name             : "Haoshuai Zhou"
   pronouns         : # example: "she/her"  
   bio              : "Not only an AI Engineer"
   location         : "Shanghai"
