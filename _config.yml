@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Hi, I'm Henry!"
+title                    : "Hi, I'm Haoshuai(Henry) Zhou!"
 title_separator          : "-"
 name                     : &name "Your Name"
 description              : &description "personal description"
@@ -154,6 +154,8 @@ include:
   - .htaccess
   - _pages
   - files
+  - _config_private.yml
+  - assets/js
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
