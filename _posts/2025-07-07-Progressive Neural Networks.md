@@ -26,7 +26,7 @@ But what if model size isn’t a hard constraint? If we allow the network to gro
 
 Each **column** in the below architecture represents a sub-network dedicated to a specific task. Initially, only the first column exists to handle the first task. Whenever a new task exists, a new column is added to learn that task.
 
-![image.png](/images/posts/progressive-neural-networks/image.png)
+![Architecture diagram of Progressive Neural Networks](/images/posts/progressive-neural-networks/image.png)
 
 Here are a few key points worth noting:
 
