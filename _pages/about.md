@@ -18,7 +18,7 @@ Here, I'll be sharing my thoughts on AI, and I hope you find them interesting!
 [Paper](https://www.isca-archive.org/interspeech_2025/zhou25g_interspeech.pdf)
 
 **Unveiling the Best Practices for Applying Speech Foundation Models to Speech Intelligibility Prediction for Hearing-Impaired People**  
-*WASPAA 2025*  
+*WASPAA 2025 Oral (Best Paper Candidate)*  
 [Paper](https://arxiv.org/abs/2505.08215)
 
 For more info
