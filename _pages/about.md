@@ -11,7 +11,7 @@ Hi, I'm Haoshuai(Henry) Zhou. I'm currently the Algo and Research Audiology Team
 
 Here, I'll be sharing my thoughts on AI, and I hope you find them interesting!
 
-## Publications
+## Selected Publications
 
 **No Audiogram: Leveraging Existing Scores for Personalized Speech Intelligibility Prediction**  
 *Interspeech 2025 Oral*  
