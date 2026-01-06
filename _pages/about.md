@@ -12,6 +12,11 @@ Hi, I'm Haoshuai(Henry) Zhou. I'm currently the Algo and Research Audiology Team
 Here, I'll be sharing my thoughts on AI, and I hope you find them interesting!
 
 ## Selected Publications
+**Intrusive Intelligibility Prediction with ASR Encoders**  
+*Interspeech 2025 Workshop, 1st place in 3rd Clarity Prediction Challenge*  
+*I led the team, guided technical direction, and coordinated the research efforts that resulted in this winning submission.*  
+[Paper](https://www.isca-archive.org/clarity_2025/yu25_clarity.pdf)
+
 
 **No Audiogram: Leveraging Existing Scores for Personalized Speech Intelligibility Prediction**  
 *Interspeech 2025 Oral*  
