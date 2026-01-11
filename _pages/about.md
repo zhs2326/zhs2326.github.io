@@ -28,9 +28,9 @@ WASPAA 2025 Oral (Best Paper Candidate)
 First author. Initiated the research idea, conducted the experiments, and wrote the paper.  
 [Paper](https://arxiv.org/abs/2505.08215)
 
-For more info
-------
-More info please refer to the [Blog Posts](/year-archive/) section.
+## Blog Posts
+
+For more thoughts and ideas, please visit the [Blog Posts](/year-archive/) section. I'm inspired by [Ziming Liu's blog](https://kindxiaoming.github.io/), where blog posts serve as an appropriate way to share ideas that might not be substantial enough for a full paper, yet can offer valuable observations and insights that may inspire others in the community. Most of my blog posts take less than 3 days to prepare.
 
 <div style="width: 60%; margin: auto;">
   <div class="visitor-map" style="text-align: center; margin-top: 2em;">
