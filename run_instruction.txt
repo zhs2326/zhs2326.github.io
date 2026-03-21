@@ -1,2 +1,0 @@
-1. Open windows powershell
-2. ./start-jekyll.ps1
