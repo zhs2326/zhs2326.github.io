@@ -13,7 +13,7 @@ excerpt: "A deep dive into the Conformer architecture, which fuses CNNs and Tran
 
 Conformer is a model architecture popularly used in automatic speech recognition (ASR), which combines the strengths of CNN and Transformer by deeply integrating these two structures. To have a deep understanding of it, we should not only remember its components, but also understand why it's designed in that way.
 
-
+<br>
 
 # Conformer Block Overview
 
@@ -35,7 +35,7 @@ One sentence for the Conformer block at first glance: it uses two half-weighted 
 
 In the following, I dive into several components where I think the design choices deserve closer attention. For modules that are largely similar to their vanilla versions, I will skip them.
 
-
+<br>
 
 # FFN
 
@@ -45,7 +45,7 @@ The precise sequence of the FFN is: **LayerNorm → Linear(d_model, 4·d_model) 
 
 The noteworthy part is that it takes an inverted bottleneck structure, where it provides a **larger representational space** for the nonlinear activation to operate in.
 
-
+<br>
 
 # Convolution Module
 
@@ -57,7 +57,7 @@ The precise sequence of the Convolution Module is: **LayerNorm → Pointwise Con
 
 The convolution module employs a depthwise separable convolution, preceded by a pointwise convolution that expands the channel dimension to 2× d_model for GLU activation. GLU splits the expanded tensor into two halves and computes `σ(gate)⊙value`, providing learnable channel-wise gating.
 
-
+<br>
 
 # Inference Flow
 
