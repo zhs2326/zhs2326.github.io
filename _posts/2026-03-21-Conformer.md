@@ -22,11 +22,13 @@ Conformer is a model architecture popularly used in automatic speech recognition
 The core of the Conformer architecture is the conformer block, which essentially has 5 components: Feed Forward Module (FFN) → Multi-Head Self Attention Module (MHSA) → Convolution Module → Feed Forward Module → Layernorm. These chain of operations can be formulated as:
 
 $$
-x_{2} = x_{1} + 0.5*FFN_{1}(x_{1})\\
-x_{3} = x_{2} + MHSA(x_{2})\\
-x_{4} = x_{3} + Conv(x_{3})\\
-x_{5} = x_{4} + 0.5*FFN_{2}(x_{4})\\
-x_{6} = Layernorm(x_{5})
+\begin{aligned}
+x_{2} &= x_{1} + 0.5*FFN_{1}(x_{1})\\
+x_{3} &= x_{2} + MHSA(x_{2})\\
+x_{4} &= x_{3} + Conv(x_{3})\\
+x_{5} &= x_{4} + 0.5*FFN_{2}(x_{4})\\
+x_{6} &= Layernorm(x_{5})
+\end{aligned}
 $$
 
 One sentence for the Conformer block at first glance: it uses two half-weighted FFNs to sandwich the MHSA (from Transformer) and Conv module applied in sequence inside.
