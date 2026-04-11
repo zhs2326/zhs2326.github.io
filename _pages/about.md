@@ -35,6 +35,6 @@ For more thoughts and ideas, please visit the [Blog Posts](/year-archive/) secti
 <div style="width: 60%; margin: auto;">
   <div class="visitor-map" style="text-align: center; margin-top: 2em;">
     <h3 class="archive__subtitle">Visitors</h3>
-    <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=FRs1a0UImi5S_TLm9sIEWGyCMuleAZ1zMbYS80kk2U8&cl=ffffff&w=a"></script>
+    <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=FRs1a0UImi5S_TLm9sIEWGyCMuleAZ1zMbYS80kk2U8&cl=ffffff&w=a&t=tt"></script>
   </div>
 </div>
