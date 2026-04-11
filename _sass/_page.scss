@@ -109,6 +109,11 @@
     margin-top: -1.5em;
     padding-left: 1.25rem;
   }
+
+  /* extra space below a divider after an intro block (Markdown blank lines collapse in HTML) */
+  hr.post-intro-divider {
+    margin-bottom: 2.5em;
+  }
 }
 
 .page__hero {
