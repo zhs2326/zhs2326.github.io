@@ -32,20 +32,52 @@ First author. Initiated the research idea, conducted the experiments, and wrote 
 
 For more thoughts and ideas, please visit the [Blog Posts](/year-archive/) section. I'm inspired by [Ziming Liu's blog](https://kindxiaoming.github.io/), where blog posts serve as an appropriate way to share ideas that might not be substantial enough for a full paper, yet can offer valuable observations and insights that may inspire others in the community. Most of my blog posts take less than 3 days to prepare.
 
-<div style="width: 60%; margin: auto;">
-  <div class="visitor-map" style="text-align: center; margin-top: 2em;">
-    <h3 class="archive__subtitle">Visitors</h3>
-    <p id="visitor-count" style="font-size: 1.1em; color: #777;">Loading…</p>
-  </div>
+<div id="visitor-section" style="max-width: 680px; margin: 2em auto 0;">
+  <h3 class="archive__subtitle" style="text-align: center;">Visitors</h3>
+  <div id="visitor-map" style="width: 100%; height: 360px;"></div>
+  <p id="visitor-count" style="text-align: center; font-size: 1.05em; color: #777; margin-top: 0.75em;"></p>
 </div>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/css/jsvectormap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/js/jsvectormap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/maps/world.js"></script>
 <script>
   (function () {
-    var el = document.getElementById('visitor-count');
-    if (!el) { return; }
-    fetch('https://zhs2326.goatcounter.com/counter/TOTAL.json')
-      .then(function (r) { if (!r.ok) { throw new Error('counter unavailable'); } return r.json(); })
-      .then(function (d) { el.textContent = d.count + ' total visits'; })
-      .catch(function () { el.parentElement.style.display = 'none'; });
+    fetch('/assets/data/visitor-locations.json?_cache=' + (new Date().getTime()))
+      .then(function (r) { if (!r.ok) { throw new Error('no data'); } return r.json(); })
+      .then(function (data) {
+        var values = {};
+        var total = 0;
+        var countries = 0;
+        (data.regions || []).forEach(function (x) {
+          if (!x.code) { return; }
+          values[String(x.code).toUpperCase()] = x.count;
+          total += x.count;
+          countries += 1;
+        });
+        var countEl = document.getElementById('visitor-count');
+        if (countEl) {
+          countEl.textContent = total > 0
+            ? (total.toLocaleString() + ' visits from ' + countries + ' ' + (countries === 1 ? 'country' : 'countries'))
+            : 'Visitor data is syncing…';
+        }
+        if (typeof jsVectorMap === 'undefined') { return; }
+        new jsVectorMap({
+          selector: '#visitor-map',
+          map: 'world',
+          zoomButtons: false,
+          backgroundColor: 'transparent',
+          regionStyle: { initial: { fill: '#e8e8e8', stroke: '#ffffff', strokeWidth: 0.4 } },
+          series: { regions: [{ attribute: 'fill', scale: ['#cfe8ff', '#08519c'], normalizeFunction: 'polynomial', values: values }] },
+          onRegionTooltipShow: function (event, tooltip, code) {
+            var c = values[code] || 0;
+            tooltip.text(tooltip.text() + ': ' + c + (c === 1 ? ' visit' : ' visits'), true);
+          }
+        });
+      })
+      .catch(function () {
+        var wrap = document.getElementById('visitor-section');
+        if (wrap) { wrap.style.display = 'none'; }
+      });
   })();
 </script>
