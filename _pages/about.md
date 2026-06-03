@@ -35,6 +35,25 @@ For more thoughts and ideas, please visit the [Blog Posts](/year-archive/) secti
 <div style="width: 60%; margin: auto;">
   <div class="visitor-map" style="text-align: center; margin-top: 2em;">
     <h3 class="archive__subtitle">Visitors</h3>
-    <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=FRs1a0UImi5S_TLm9sIEWGyCMuleAZ1zMbYS80kk2U8&cl=ffffff&w=a&t=tt"></script>
+    <p id="visitor-count" style="font-size: 1.1em; color: #777;">Loading…</p>
   </div>
 </div>
+
+<script>
+  (function () {
+    var el = document.getElementById('visitor-count');
+    if (!el) { return; }
+    fetch('https://zhs2326.goatcounter.com/counter/TOTAL.json')
+      .then(function (r) {
+        if (!r.ok) { throw new Error('counter unavailable'); }
+        return r.json();
+      })
+      .then(function (d) {
+        el.textContent = d.count + ' total visits';
+      })
+      .catch(function () {
+        // Hide the section if the counter can't load (e.g. blocked or not enabled)
+        el.parentElement.style.display = 'none';
+      });
+  })();
+</script>
