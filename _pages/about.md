@@ -44,16 +44,8 @@ For more thoughts and ideas, please visit the [Blog Posts](/year-archive/) secti
     var el = document.getElementById('visitor-count');
     if (!el) { return; }
     fetch('https://zhs2326.goatcounter.com/counter/TOTAL.json')
-      .then(function (r) {
-        if (!r.ok) { throw new Error('counter unavailable'); }
-        return r.json();
-      })
-      .then(function (d) {
-        el.textContent = d.count + ' total visits';
-      })
-      .catch(function () {
-        // Hide the section if the counter can't load (e.g. blocked or not enabled)
-        el.parentElement.style.display = 'none';
-      });
+      .then(function (r) { if (!r.ok) { throw new Error('counter unavailable'); } return r.json(); })
+      .then(function (d) { el.textContent = d.count + ' total visits'; })
+      .catch(function () { el.parentElement.style.display = 'none'; });
   })();
 </script>
