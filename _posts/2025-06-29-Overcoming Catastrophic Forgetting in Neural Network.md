@@ -2,6 +2,8 @@
 title: 'Paper Reading: Overcoming Catastrophic Forgetting in Neural Network'
 date: 2025-06-29
 permalink: /posts/2025/06/blog-post-2/
+categories:
+  - Continual Learning
 tags:
   - continual learning
 excerpt: ""

@@ -2,6 +2,8 @@
 title: 'Conformer: Combining CNNs and Transformers for Speech Recognition'
 date: 2026-03-21
 permalink: /posts/2026/03/blog-post-1/
+categories:
+  - Automatic Speech Recognition
 tags:
   - speech recognition
   - deep learning

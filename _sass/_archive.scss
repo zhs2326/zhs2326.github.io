@@ -28,11 +28,13 @@
 }
 
 .archive__subtitle {
-  margin: 1.414em 0 0;
-  padding-bottom: 0.5em;
-  font-size: $type-size-5;
-  color: mix(#fff, $gray, 25%);
-  border-bottom: 1px solid $border-color;
+  margin: 2em 0 0.75em;
+  padding-bottom: 0.3em;
+  font-size: 1.4em; // larger than posts, smaller than the "Blog Posts" page title
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  color: $text-color;
+  border-bottom: 2px solid $link-color;
 
   + .list__item .archive__item-title {
     margin-top: 0.5em;
@@ -42,6 +44,19 @@
 .archive__item-title {
   margin-bottom: 0.25em;
   font-family: $sans-serif-narrow;
+  font-size: $type-size-5;
+  font-weight: 600;
+  color: $text-color;
+
+  a {
+    color: $text-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $link-color;
+      text-decoration: underline;
+    }
+  }
 
   a + a {
     opacity: 0.5;
@@ -58,8 +73,9 @@
 }
 
 .archive__item-excerpt {
-  margin-top: 0;
-  font-size: $type-size-6;
+  margin-top: 0.25em;
+  font-size: $type-size-6 * 0.95; // just a touch larger than the meta line (0.85)
+  color: $dark-gray;
 
   & + p {
     text-indent: 0;
@@ -102,8 +118,22 @@
     padding-right: $right-sidebar-width-wide;
   }
 
-  .page__meta {
-    margin: 0 0 4px;
+  // read-time and "Published:" date share one line
+  .page__meta,
+  .page__date {
+    display: inline-block;
+    margin: 0;
+    font-size: $type-size-6 * 0.85;
+    color: mix(#fff, $gray, 25%);
+  }
+
+  .page__meta + .page__date {
+    margin-left: 1em; // gap between read-time and date
+  }
+
+  // higher specificity than ".page__content p" so the size actually applies
+  .archive__item-excerpt {
+    font-size: $type-size-6 * 0.95; // just a touch larger than the meta line (0.85)
   }
 }
 

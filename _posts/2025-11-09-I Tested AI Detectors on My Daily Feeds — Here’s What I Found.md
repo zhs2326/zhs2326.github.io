@@ -2,6 +2,8 @@
 title: 'I Tested AI Detectors on My Daily Feeds — Here’s What I Found'
 date: 2025-11-09
 permalink: /posts/2025/11/blog-post-1/
+categories:
+  - Small Experiments
 tags:
   - ai detector
 excerpt: ""
