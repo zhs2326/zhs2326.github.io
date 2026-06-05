@@ -2,6 +2,8 @@
 title: 'Reflections as a Newbie Tech Lead'
 date: 2026-04-11
 permalink: /posts/2026/04/blog-post-1/
+categories:
+  - Reflections
 tags:
   - leadership
   - career

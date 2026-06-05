@@ -2,6 +2,8 @@
 title: 'Paper Reading: Learning without Forgetting'
 date: 2025-06-01
 permalink: /posts/2025/06/blog-post-1/
+categories:
+  - Continual Learning
 tags:
   - continual learning
 excerpt: ""

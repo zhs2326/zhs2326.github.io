@@ -2,6 +2,8 @@
 title: 'Paper Reading: Progressive Neural Networks'
 date: 2025-07-07
 permalink: /posts/2025/07/blog-post-2/
+categories:
+  - Continual Learning
 tags:
   - continual learning
 excerpt: ""
