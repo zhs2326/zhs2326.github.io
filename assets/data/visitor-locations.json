@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-04T04:30:04Z",
+  "updated": "2026-06-06T04:22:10Z",
   "regions": [
     {
       "code": "US",
@@ -54,6 +54,11 @@
     {
       "code": "CN",
       "name": "China",
+      "count": 1
+    },
+    {
+      "code": "KR",
+      "name": "South Korea",
       "count": 1
     }
   ]
