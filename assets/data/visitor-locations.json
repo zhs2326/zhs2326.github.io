@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-12T04:29:28Z",
+  "updated": "2026-06-17T04:30:04Z",
   "regions": [
     {
       "code": "US",
@@ -9,7 +9,7 @@
     {
       "code": "JP",
       "name": "Japan",
-      "count": 58
+      "count": 67
     },
     {
       "code": "SG",
@@ -42,14 +42,14 @@
       "count": 3
     },
     {
-      "code": "TW",
-      "name": "Taiwan",
+      "code": "GB",
+      "name": "United Kingdom",
       "count": 3
     },
     {
-      "code": "GB",
-      "name": "United Kingdom",
-      "count": 2
+      "code": "TW",
+      "name": "Taiwan",
+      "count": 3
     },
     {
       "code": "CN",
