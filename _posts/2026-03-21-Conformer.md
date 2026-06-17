@@ -80,7 +80,7 @@ Input waveform: (B, T_samples)
 
 ### 2. Feature Extraction — Log-Mel Spectrogram
 
-The raw waveform is converted to a log-mel spectrogram using a Short-Time Fourier Transform (STFT) with, for example, a 25ms window and 10ms hop.
+The raw waveform is first transformed via a Short-Time Fourier Transform (STFT) — using, for example, a 25ms window and 10ms hop — to produce a spectrogram, which is then mapped through a mel filterbank and log-compressed to yield the log-mel spectrogram.
 
 - **Frames** = `T_samples / hop_length` ≈ `64000 / 160` = 400 frames
 - **Mel bins** = 80 (standard in ESPnet / WeNet setups)
@@ -104,7 +104,7 @@ After SpecAugment: (4, 400, 80)   ← same shape
 
 ### 4. Subsampling (Conv2D Subsampler)
 
-To reduce the sequence length (which is expensive for attention), a Conv2D subsampling module is applied — typically with stride 2 twice, giving a **4× reduction**.
+To reduce the sequence length (which is expensive for attention), a Conv2D subsampling module is applied — typically with stride 2 twice, giving a **4× reduction**. This shrinks the time dimension to make attention more tractable. Besides, the frequency dimension is reduced during this subsampling as well (e.g. 400→100 frames and 80→20 mel bins).
 
 The feature map is first treated as a 2D image `(T, F)`, convolved, then reshaped into a 1D sequence projected to the model dimension `d_model` (e.g. 256).
 
@@ -221,4 +221,4 @@ Final output   : (4, L_text, 5000)
 
 ---
 
-The key insight is that the **sequence length shrinks early** (at the subsampler) and then **stays constant** all the way through the Conformer stack — this is what makes the self-attention computationally feasible. The model dimension `d_model` is similarly fixed throughout, acting as a consistent "information highway" between modules.
+The key insight is that the **sequence length shrinks early** (at the subsampler) — this is what makes the self-attention computationally feasible and then **stays constant** all the way through the Conformer stack. The model dimension `d_model` is similarly fixed throughout, acting as a consistent "information highway" between modules.
