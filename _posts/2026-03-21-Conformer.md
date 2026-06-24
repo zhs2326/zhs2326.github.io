@@ -17,11 +17,45 @@ Conformer is a model architecture popularly used in automatic speech recognition
 
 <br>
 
+# Where Conformer Fits in an ASR Pipeline
+A modern ASR system typically follows an **encoder + CTC / transducer / attention-decoder** structure. The **encoder** consumes audio features (e.g. log-mel spectrograms) and transforms them into high-level, contextualized acoustic representations that summarize *what was said* at each time step. The **CTC head**, **transducer**, or **attention decoder** then maps these representations into text tokens — CTC emits a per-frame token distribution under a conditional-independence assumption (frames are independent *given the encoder output*), while transducers and attention decoders additionally condition on previously emitted tokens when generating the next one.
+
+Conformer sits on the **encoder** side of this pipeline. It does not produce text directly; instead, it produces the rich acoustic features that the downstream head decodes into a transcript.
+
+<br>
+
+# Attention vs. Convolution
+Before diving into the detailed architecture of Conformer, it's worth understanding the contrast between **attention** and **convolution** — the choice to fuse the two is precisely what distinguishes Conformer from a vanilla Transformer.
+
+## Attention
+
+![Attention Operation (from *Introduction to Transformers and Attention Mechanisms*, https://medium.com/@kalra.rakshit/introduction-to-transformers-and-attention-mechanisms-c29d252ea2c5)]({{ site.baseurl }}/images/posts/conformer/attention.png)
+
+The figure above illustrates the attention mechanism. There are two streams of inputs: the **blue tensors** act as "finders" looking for information, and the **grey tensors** act as "candidates" that may carry useful information. The operation proceeds in three steps.
+
+**1. Project.** The blue inputs are linearly projected into **query** tensors. The grey inputs are projected by two separate linear layers into **key** and **value** tensors.
+
+**2. Score.** For each query, a dot product is computed against every key, yielding a raw relevance score for each query–key pair. Intuitively, the query is a "missing-person sketch" and each key is a "candidate photo"; the dot product measures similarity. The scores are then scaled by `1/√d_k` and passed through a softmax to produce attention weights that sum to 1.
+
+**3. Aggregate.** The values are combined as a weighted sum using those attention weights, producing the output for each query.
+
+In an audio encoder, the blue and grey inputs are the **same tensor** — this is called **self-attention**. Each tensor carries information from one time frame, and self-attention lets every frame gather information from every other frame (including itself). Because any frame can directly attend to any other frame in a single layer, attention captures **global, long-range context** uniformly, regardless of where the frames sit in the sequence.
+
+## Convolution
+
+![Convolution Operation (from *A complete walkthrough of convolution operations*, https://viso.ai/deep-learning/convolution-operations/)]({{ site.baseurl }}/images/convolution.png)
+
+Convolution applies a learned filter (kernel) that slides across the input and computes a weighted sum over a fixed window around each position. Because that window is small — typically just a handful of frames — a single convolution layer only sees a narrow local neighborhood. Stacking convolutional layers grows the receptive field, but only gradually.
+
+The takeaway: **convolution excels at local patterns but struggles with long-range dependencies — the exact complement of attention.** Conformer's design fuses the two so that each block can model local and global structure together.
+
+<br>
+
 # Conformer Block Overview
 
 ![Conformer Block Overview]({{ site.baseurl }}/images/posts/conformer/image.png)
 
-The core of the Conformer architecture is the conformer block, which essentially has 5 components: Feed Forward Module (FFN) → Multi-Head Self Attention Module (MHSA) → Convolution Module → Feed Forward Module → Layernorm. These chain of operations can be formulated as:
+Now, let's look at the detailed architecture of Conformer. The core of the Conformer architecture is the conformer block, which essentially has 5 components: Feed Forward Module (FFN) → Multi-Head Self Attention Module (MHSA) → Convolution Module → Feed Forward Module → Layernorm. These chain of operations can be formulated as:
 
 $$
 \begin{aligned}
@@ -33,9 +67,18 @@ x_{6} &= Layernorm(x_{5})
 \end{aligned}
 $$
 
-One sentence for the Conformer block at first glance: it uses two half-weighted FFNs to sandwich the MHSA (from Transformer) and Conv module applied in sequence inside.
+**At a glance:** a Conformer block sandwiches an **MHSA → Conv** pair between two half-weighted FFNs — the *Macaron-style* structure borrowed from Lu et al. (2019). The MHSA, inherited from the Transformer, captures **global** context, while the Conv module captures **local** patterns; this complementary pairing is what lets Conformer outperform a vanilla Transformer on tasks like ASR.
 
-In the following, I dive into several components where I think the design choices deserve closer attention. For modules that are largely similar to their vanilla versions, I will skip them.
+In the following, I will dive into several components where I think the design choices deserve closer attention.
+
+<br>
+
+# Convolution Module
+![Convolution Module]({{ site.baseurl }}/images/posts/conformer/image 2.png)
+
+The precise sequence of the Convolution Module is: **LayerNorm → Pointwise Conv(d_model, 2·d_model) → GLU → Depthwise Conv(d_model, d_model, kernel=31) → BatchNorm → Swish → Pointwise Conv(d_model, d_model) → Dropout**, with a residual connection around the entire module.
+
+The convolution module employs a depthwise separable convolution, preceded by a pointwise convolution that expands the channel dimension to 2× d_model for GLU activation. GLU splits the expanded tensor into two halves and computes `σ(gate)⊙value`, providing learnable channel-wise gating.
 
 <br>
 
@@ -46,18 +89,6 @@ In the following, I dive into several components where I think the design choice
 The precise sequence of the FFN is: **LayerNorm → Linear(d_model, 4·d_model) → Swish → Dropout → Linear(4·d_model, d_model) → Dropout**, with a residual connection around the entire module.
 
 The noteworthy part is that it takes an inverted bottleneck structure, where it provides a **larger representational space** for the nonlinear activation to operate in.
-
-<br>
-
-# Convolution Module
-
-![Convolution Module]({{ site.baseurl }}/images/posts/conformer/image 2.png)
-
-The precise sequence of the Convolution Module is: **LayerNorm → Pointwise Conv(d_model, 2·d_model) → GLU → Depthwise Conv(d_model, d_model, kernel=31) → BatchNorm → Swish → Pointwise Conv(d_model, d_model) → Dropout**, with a residual connection around the entire module.
-
-
-
-The convolution module employs a depthwise separable convolution, preceded by a pointwise convolution that expands the channel dimension to 2× d_model for GLU activation. GLU splits the expanded tensor into two halves and computes `σ(gate)⊙value`, providing learnable channel-wise gating.
 
 <br>
 
