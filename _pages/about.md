@@ -30,7 +30,7 @@ First author. Initiated the research idea, conducted the experiments, and wrote 
 
 ## Blog Posts
 
-For more thoughts and ideas, please visit the [Blog Posts](/year-archive/) section. I'm inspired by [Ziming Liu's blog](https://kindxiaoming.github.io/), where blog posts serve as an appropriate way to share ideas that might not be substantial enough for a full paper, yet can offer valuable observations and insights that may inspire others in the community. Most of my blog posts take less than 3 days to prepare.
+For more thoughts and ideas, check out the [Blog Posts](/year-archive/) section. There, I write about speech foundation models, continual learning, and the occasional fun experiment.
 
 <div id="visitor-section" style="max-width: 680px; margin: 2em auto 0;">
   <h3 class="archive__subtitle" style="text-align: center;">Visitors</h3>
