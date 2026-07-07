@@ -50,25 +50,25 @@ The two branch outputs are combined and projected back to the input dimension. T
 # Performance
 Across benchmarks, Branchformer achieves results comparable to Conformer on ASR. On LibriSpeech it roughly matches a same-size Conformer (around 2.4% / 5.5% WER on test-clean / test-other without an external LM), and on some datasets it is even slightly better or more stable to train — for example a lower CER on AISHELL, and it trains successfully on Speech Commands where the Conformer baseline diverged. The takeaway is not that Branchformer dramatically beats Conformer in accuracy — it does not — but that it reaches comparable quality with a simpler, more interpretable, and more flexible design.
 
-![LibriSpeech WER results comparing Branchformer with Conformer and other baselines]({{ site.baseurl }}/images/posts/branchformer/exp_result3.png)
+<img src="{{ site.baseurl }}/images/posts/branchformer/exp_result3.png" alt="LibriSpeech WER results comparing Branchformer with Conformer and other baselines" style="width: 75%;">
 *On LibriSpeech, Branchformer matches the same-size Conformer baseline on test-clean / test-other. (Table 3 from the Branchformer paper.)*
 
-![AISHELL Mandarin CER results comparing Branchformer with Conformer and other baselines]({{ site.baseurl }}/images/posts/branchformer/exp_result1.png)
+<img src="{{ site.baseurl }}/images/posts/branchformer/exp_result1.png" alt="AISHELL Mandarin CER results comparing Branchformer with Conformer and other baselines" style="width: 75%;">
 *On the AISHELL Mandarin task, Branchformer edges out the Conformer baseline in CER. (Table 1 from the Branchformer paper.)*
 
-![Switchboard WER results comparing Branchformer with Conformer and other baselines]({{ site.baseurl }}/images/posts/branchformer/exp_result2.png)
+<img src="{{ site.baseurl }}/images/posts/branchformer/exp_result2.png" alt="Switchboard WER results comparing Branchformer with Conformer and other baselines" style="width: 75%;">
 *On Switchboard, Branchformer is on par with Conformer. (Table 2 from the Branchformer paper.)*
 
 
 # Layer-wise Analysis of Global/Local Branches
 This is the most interesting part of the paper, and in my opinion the biggest benefit of Branchformer: because the two branches are merged with learnable weights, we can read those weights off and see how important the global and local branches are at each depth. The pattern is not perfectly clean, but it is far from random — the early layers tend to use both branches fairly evenly, the middle-to-late layers are increasingly dominated by the global (attention) branch, and the final layers swing back toward the local (cgMLP) branch. This lines up with the intuition that the model first builds up broad context and then re-focuses on local detail before producing outputs.
 
-![Visualization of per-layer attention and cgMLP branch weights across datasets and depths]({{ site.baseurl }}/images/posts/branchformer/layer_analysis.png)
+<img src="{{ site.baseurl }}/images/posts/branchformer/layer_analysis.png" alt="Visualization of per-layer attention and cgMLP branch weights across datasets and depths" style="width: 75%;">
 *Learned branch weights at each layer, from the weighted-average merge. Early layers interleave the two branches, while deeper layers tend to be dominated by consecutive global (attention) then local (cgMLP) blocks. (Figure 5 from the Branchformer paper.)*
 
 Another noteworthy finding is that the *diagonality* of the attention maps decreases in Branchformer. Diagonality measures how much attention concentrates on nearby positions, so lower diagonality means MHSA is attending more globally. In other words, once a dedicated convolutional branch is handling local patterns, the attention branch is freed up to specialize in long-range, global relationships (recall that in principle MHSA can attend either locally or globally). This is exactly the kind of clean division of labor that the parallel design was hoping to encourage.
 
-![Per-layer diagonality of self-attention, comparing Transformer and Branchformer]({{ site.baseurl }}/images/posts/branchformer/diagonality.png)
+<img src="{{ site.baseurl }}/images/posts/branchformer/diagonality.png" alt="Per-layer diagonality of self-attention, comparing Transformer and Branchformer" style="width: 75%;">
 *Diagonality of self-attention at each encoder layer. Branchformer (blue) stays consistently below the Transformer (orange), i.e. its attention concentrates less on neighboring positions and attends more globally. (Figure 6 from the Branchformer paper.)*
 
 
