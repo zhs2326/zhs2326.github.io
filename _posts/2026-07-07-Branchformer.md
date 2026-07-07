@@ -8,7 +8,7 @@ tags:
   - speech recognition
   - deep learning
   - transformer
-excerpt: "A follow-up to Conformer that replaces the fixed attention-then-convolution stacking with two parallel branches — self-attention for global context and a convolutional gated MLP for local context — making the interplay of local and global modeling both more flexible and more interpretable."
+excerpt: "My notes on Branchformer, a parallel two-branch alternative to Conformer for ASR encoding."
 ---
 
 # Branchformer
