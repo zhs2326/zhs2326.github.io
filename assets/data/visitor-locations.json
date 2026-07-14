@@ -1,15 +1,15 @@
 {
-  "updated": "2026-07-11T04:01:17Z",
+  "updated": "2026-07-14T03:59:14Z",
   "regions": [
     {
       "code": "JP",
       "name": "Japan",
-      "count": 97
+      "count": 98
     },
     {
       "code": "US",
       "name": "United States",
-      "count": 71
+      "count": 73
     },
     {
       "code": "SG",
@@ -27,6 +27,11 @@
       "count": 10
     },
     {
+      "code": "TW",
+      "name": "Taiwan",
+      "count": 7
+    },
+    {
       "code": "CA",
       "name": "Canada",
       "count": 4
@@ -34,11 +39,6 @@
     {
       "code": "CY",
       "name": "Cyprus",
-      "count": 4
-    },
-    {
-      "code": "TW",
-      "name": "Taiwan",
       "count": 4
     },
     {
