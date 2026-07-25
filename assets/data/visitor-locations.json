@@ -1,20 +1,20 @@
 {
-  "updated": "2026-07-23T04:02:09Z",
+  "updated": "2026-07-25T04:01:45Z",
   "regions": [
     {
       "code": "JP",
       "name": "Japan",
-      "count": 124
+      "count": 130
     },
     {
       "code": "US",
       "name": "United States",
-      "count": 74
+      "count": 75
     },
     {
       "code": "SG",
       "name": "Singapore",
-      "count": 59
+      "count": 60
     },
     {
       "code": "HK",
