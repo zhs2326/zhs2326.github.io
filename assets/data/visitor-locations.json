@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08T03:04:18Z",
+  "updated": "2026-09-10T03:04:18Z",
   "regions": [
     {
       "code": "JP",
@@ -54,6 +54,11 @@
     {
       "code": "CN",
       "name": "China",
+      "count": 1
+    },
+    {
+      "code": "FR",
+      "name": "France",
       "count": 1
     },
     {
