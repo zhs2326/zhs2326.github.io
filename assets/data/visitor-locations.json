@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T03:03:01Z",
+  "updated": "2026-11-14T03:02:49Z",
   "regions": [
     {
       "code": "JP",
@@ -14,7 +14,7 @@
     {
       "code": "SG",
       "name": "Singapore",
-      "count": 62
+      "count": 63
     },
     {
       "code": "HK",
@@ -69,6 +69,11 @@
     {
       "code": "NL",
       "name": "Netherlands",
+      "count": 1
+    },
+    {
+      "code": "PL",
+      "name": "Poland",
       "count": 1
     }
   ]
