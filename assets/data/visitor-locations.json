@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-19T03:03:06Z",
+  "updated": "2026-11-22T03:02:56Z",
   "regions": [
     {
       "code": "JP",
@@ -9,7 +9,7 @@
     {
       "code": "US",
       "name": "United States",
-      "count": 107
+      "count": 110
     },
     {
       "code": "SG",
